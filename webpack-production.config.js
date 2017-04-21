@@ -7,7 +7,7 @@ module.exports = [
 		minimize: true,
 		debug: false,
 		// модули которые меняются редко или почти никогда
-		commonsChunk: ['react/addons', 'immutable', 'underscore', 'babel-core/external-helpers', 'babel/polyfill'],
+		commonsChunk: ['react-addons', 'immutable', 'underscore', 'babel-core/external-helpers', 'babel/polyfill'],
 		faker: ['faker']
 	}),
 	require('./make-webpack-config')({

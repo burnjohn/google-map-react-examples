@@ -111,8 +111,8 @@ module.exports = (options) => {
         });
       }
     },
-    new webpack.PrefetchPlugin('react/addons'),
-    new webpack.PrefetchPlugin('react/lib/ReactComponentBrowserEnvironment'),
+    new webpack.PrefetchPlugin('react'),
+    new webpack.PrefetchPlugin('react-dom'),
     new webpack.PrefetchPlugin('immutable')
   ];
 
@@ -120,7 +120,7 @@ module.exports = (options) => {
   if (options.prerender) {
     externals.push(
       /^react(\/.*)?$/,
-      'react/addons',
+      'react',
       'immutable',
       'underscore'
     );

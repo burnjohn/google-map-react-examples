@@ -1,7 +1,7 @@
 /*
  * GoogleMap hover example
  */
-import React, {PropTypes, Component} from 'react/addons';
+import React, {PropTypes, Component} from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import controllable from 'react-controllables';
 
@@ -82,6 +82,7 @@ export default class EventsMapPage extends Component {
         onChildClick={this._onChildClick}
         onChildMouseEnter={this._onChildMouseEnter}
         onChildMouseLeave={this._onChildMouseLeave}
+        draggable={ false }
         >
         {places}
       </GoogleMap>

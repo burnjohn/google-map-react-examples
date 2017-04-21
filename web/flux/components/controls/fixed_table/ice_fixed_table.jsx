@@ -3,9 +3,9 @@
  * i did it for reactmap example
  * I don't think that this control production ready.
  */
-import React, {PropTypes, Component} from 'react/addons';
+import React, {PropTypes, Component} from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
-import size from 'size-decorator';
+import size from '../../SizeDecorator';
 import invariant from './fixed-data-table-ice/internal/invariant.js';
 import PureRenderer from 'components/controls/pure_renderer/pure_renderer.jsx';
 import anim from 'utils/anim.js';

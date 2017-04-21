@@ -1,4 +1,4 @@
-import React, {PropTypes, Component} from 'react/addons';
+import React, {PropTypes, Component} from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
 import PureRenderer from 'components/controls/pure_renderer/pure_renderer.jsx';

@@ -1,4 +1,4 @@
-import React, {PropTypes, Component} from 'react/addons';
+import React, {PropTypes, Component} from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import * as routeNames from 'actions/user_routes.js';
 import {examples} from 'consts/example_defs.js';

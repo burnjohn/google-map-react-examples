@@ -1,4 +1,4 @@
-import React, {PropTypes, Component} from 'react/addons';
+import React, {PropTypes, Component} from 'react';
 import controllable from 'react-controllables';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
@@ -48,6 +48,10 @@ export default class MainMapBlock extends Component {
 
   constructor(props) {
     super(props);
+    
+    this.state = {
+        mapIsDraggable: true
+    }
   }
 
   _onBoundsChange = (center, zoom, bounds, marginBounds) => {
@@ -61,6 +65,10 @@ export default class MainMapBlock extends Component {
 
   _onChildClick = (key, childProps) => {
     const markerId = childProps.marker.get('id');
+    this.setState({ mapIsDraggable: false }, () => {
+        console.log(this.map, 'set!!!');
+    });
+    
     const index = this.props.markers.findIndex(m => m.get('id') === markerId);
     if (this.props.onChildClick) {
       this.props.onChildClick(index);
@@ -110,20 +118,22 @@ export default class MainMapBlock extends Component {
       ));
 
     return (
-      <GoogleMap
-        // apiKey={null}
-        center={this.props.center.toJS()}
-        zoom={this.props.zoom}
-        onBoundsChange={this._onBoundsChange}
-        onChildClick={this._onChildClick}
-        onChildMouseEnter={this._onChildMouseEnter}
-        onChildMouseLeave={this._onChildMouseLeave}
-        margin={[K_MARGIN_TOP, K_MARGIN_RIGHT, K_MARGIN_BOTTOM, K_MARGIN_LEFT]}
-        hoverDistance={K_HOVER_DISTANCE}
-        distanceToMouse={this._distanceToMouse}
-        >
-        {Markers}
-      </GoogleMap>
+              <GoogleMap
+                // apiKey={null}
+                center={this.props.center.toJS()}
+                zoom={this.props.zoom}
+                onBoundsChange={this._onBoundsChange}
+                onChildClick={this._onChildClick}
+                onChildMouseEnter={this._onChildMouseEnter}
+                onChildMouseLeave={this._onChildMouseLeave}
+                margin={[K_MARGIN_TOP, K_MARGIN_RIGHT, K_MARGIN_BOTTOM, K_MARGIN_LEFT]}
+                hoverDistance={K_HOVER_DISTANCE}
+                distanceToMouse={this._distanceToMouse}
+                clickableIcons={ false }
+                draggable={false}
+                >
+                {Markers}
+              </GoogleMap>
     );
   }
 }

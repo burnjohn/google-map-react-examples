@@ -4,7 +4,7 @@
  * i did it for reactmap example
  * it is not production ready
  */
-import React, {PropTypes, Component} from 'react/addons';
+import React, {PropTypes, Component} from 'react';
 import controllable from 'react-controllables';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 

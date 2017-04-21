@@ -9,4 +9,4 @@
  * @providesModule cloneWithProps
  */
 
-module.exports = require('react/lib/cloneWithProps');
+module.exports = require('react-clonewithprops');

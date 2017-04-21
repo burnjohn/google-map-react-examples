@@ -1,7 +1,7 @@
 /*
  * GoogleMap distance hover usage example
  */
-import React, {PropTypes, Component} from 'react/addons';
+import React, {PropTypes, Component} from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
 import GoogleMap from 'google-map-react';
@@ -58,6 +58,7 @@ export default class DistanceHoverMapPage extends Component {
         // and distanceToMouse(...args) < hoverDistance
         hoverDistance={K_CIRCLE_SIZE / 2}
         distanceToMouse={this._distanceToMouse}
+        draggable={ false }
         >
         <MyGreatPlaceWithStick lat={59.955413} lng={30.337844} text={'A'} zIndex={2} /* Kreyser Avrora */ />
         <MyGreatPlaceWithStick {...this.props.greatPlaceCoords} text={'B'} zIndex={1} /* place near Kreyser Avrora */ />

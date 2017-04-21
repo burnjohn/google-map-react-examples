@@ -2,7 +2,7 @@
  * Marker example
  */
 
-import React, {PropTypes, Component} from 'react/addons';
+import React, {PropTypes, Component} from 'react';
 import cx from 'classnames';
 
 import controllable from 'react-controllables';

@@ -1,7 +1,7 @@
 /*
  * Base Google Map example
  */
-import React, {PropTypes, Component} from 'react/addons';
+import React, {PropTypes, Component} from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
 import GoogleMap from 'google-map-react';
@@ -19,6 +19,7 @@ function createMapOptions(maps) {
       position: maps.ControlPosition.RIGHT_CENTER,
       style: maps.ZoomControlStyle.SMALL
     },
+      draggable: false,
     mapTypeControlOptions: {
       position: maps.ControlPosition.TOP_RIGHT
     },
@@ -51,7 +52,9 @@ export default class SimpleMapPage extends Component {
         // apiKey={YOUR_GOOGLE_MAP_API_KEY} // set if you need stats etc ...
         center={this.props.center}
         zoom={this.props.zoom}
-        options={createMapOptions}>
+        options={createMapOptions}
+        draggable={ fasle }
+       >
         <MyGreatPlace lat={59.955413} lng={30.337844} text={'A'} /* Kreyser Avrora */ />
         <MyGreatPlace {...this.props.greatPlaceCoords} text={'B'} /* road circle */ />
       </GoogleMap>

@@ -1,7 +1,7 @@
 /*
  * GoogleMap hover example
  */
-import React, {PropTypes, Component} from 'react/addons';
+import React, {PropTypes, Component} from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
 import GoogleMap from 'google-map-react';
@@ -38,6 +38,7 @@ export default class SimpleHoverMapPage extends Component {
         // you can use internal GoogleMap component hover algorithm
         // hover algorithm explained at x_distance_hover example
         hoverDistance={K_SIZE / 2}
+        draggable={ false }
         >
         <MyGreatPlaceWithHover lat={59.955413} lng={30.337844} text={'A'} /* Kreyser Avrora */ />
         <MyGreatPlaceWithHover {...this.props.greatPlaceCoords} text={'B'} /* road circle */ />
