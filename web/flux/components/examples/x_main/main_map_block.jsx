@@ -1,6 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import controllable from 'react-controllables';
 import shouldPureComponentUpdate from 'react-pure-render/function';
+import cx from 'classnames';
 
 import GoogleMap from 'google-map-react';
 import MarkerExample, {K_SCALE_NORMAL} from './marker_example.jsx';
@@ -94,12 +95,51 @@ export default class MainMapBlock extends Component {
       this.props.onChildClick(-1);
     }
   }
+    
+    _onMouseEnterContent = (/*e*/) => {
+      console.log('_onMouseEnterContent');
+    }
+    
+    _onMouseLeaveContent = (/*e*/) => {
+      console.log('_onMouseLeaveContent');
+    }
 
   _distanceToMouse = customDistanceToMouse;
 
   render() {
     const {rowFrom, rowTo} = getRealFromTo(this.props.visibleRowFirst, this.props.visibleRowLast, this.props.maxVisibleRows, this.props.markers.size);
-
+    
+    const InfoWindows = this.props.markers &&
+        this.props.markers.filter((m, index) => index >= rowFrom && index <= rowTo)
+            .map( (marker, index) => {
+                return (
+                    <div
+                        className={cx('hint__content map-marker-hint')}
+                        onMouseEnter={this._onMouseEnterContent}
+                        onMouseLeave={this._onMouseLeaveContent}
+                    >
+        
+                        <div className="map-marker-hint__title">
+                            <strong>{marker.get('title')}</strong>
+                        </div>
+                        <div className="map-marker-hint__address">
+                            {marker.get('address')}
+                        </div>
+        
+                        <div className={cx('map-marker-hint__content')}>
+                            {marker.get('description')}
+                        </div>
+        
+                        <div>
+                            <a className={cx('map-marker-hint__ap-link')}>Click to view more info</a>
+                        </div>
+    
+                    </div>
+                );
+            
+            }
+        );
+    
     const Markers = this.props.markers &&
       this.props.markers.filter((m, index) => index >= rowFrom && index <= rowTo)
       .map((marker, index) => (
@@ -131,8 +171,9 @@ export default class MainMapBlock extends Component {
                 distanceToMouse={this._distanceToMouse}
                 clickableIcons={ false }
                 draggable={false}
+                markers={ Markers }
+                infoWindows={ InfoWindows }
                 >
-                {Markers}
               </GoogleMap>
     );
   }

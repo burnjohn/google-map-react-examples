@@ -103,15 +103,7 @@ export default class MapMarker extends Component {
     if (!this.alive) return;
     this.props.onHoverStateChange(...args);
   }
-
-  _onMouseEnterContent = (/*e*/) => {
-    this.props.$onMouseAllow(false); // disable mouse move hovers
-  }
-
-  _onMouseLeaveContent = (/*e*/) => {
-    this.props.$onMouseAllow(true); // enable mouse move hovers
-  }
-
+    
   _onCloseClick = () => {
     if (this.props.onCloseClick) {
       this.props.onCloseClick();
@@ -148,10 +140,10 @@ export default class MapMarker extends Component {
     const mapHeight = this.props.$geoService.getHeight();
     const markerDim = this.props.$getDimensions(this.props.$dimensionKey);
 
-    const hintBaloonHorizontalPosStyle = getHintBaloonHorizontalPosStyle(markerDim.x, this.props.size.width, this.props.origin.x, mapWidth);
-    const hintBaloonVerticalPosClass = getHintBaloonVerticalPosClass(markerDim.y, mapHeight);
+    // const hintBaloonHorizontalPosStyle = getHintBaloonHorizontalPosStyle(markerDim.x, this.props.size.width, this.props.origin.x, mapWidth);
+    // const hintBaloonVerticalPosClass = getHintBaloonVerticalPosClass(markerDim.y, mapHeight);
 
-    const hintBalloonBottomOffsetClass = getHintBottomOffsetClass(this.props.size.width, this.props.origin.x);
+    // const hintBalloonBottomOffsetClass = getHintBottomOffsetClass(this.props.size.width, this.props.origin.x);
 
     // set baloon position at first and then animate (it must be some lib for react animations)
     const noTransClass = this.props.$hover === true && this.props.hoverState !== true ? 'hint--notrans' : '';
@@ -169,11 +161,9 @@ export default class MapMarker extends Component {
       <div
         style={markerHolderStyle}
         className={cx('map-marker hint hint--html',
-          this.props.hintType,
-          hintBalloonBottomOffsetClass,
-          noTransClass, noTransBalloonClass, hintBaloonVerticalPosClass,
-          this.props.showBallon ? 'hint--balloon' : '',
-          showHint ? 'hint--always' : 'hint--hidden')}>
+          this.props.hintType
+        )}
+      >
         <div
           style={styleMarkerMarker}
           className={cx('map-marker__marker', imageClass)}>
@@ -184,33 +174,7 @@ export default class MapMarker extends Component {
             :
             <div/>}
         </div>
-        <div
-          style={hintBaloonHorizontalPosStyle}
-          className={cx('hint__content map-marker-hint', this.props.showBallon ? '' : 'noevents')}
-          onMouseEnter={this._onMouseEnterContent}
-          onMouseLeave={this._onMouseLeaveContent}>
-          <div
-            onClick={this._onCloseClick}
-            className={cx('map-marker-hint__close-button', this.props.showBallon ? 'map-marker-hint__close-button--visible' : '')}>
-            close
-          </div>
 
-          <div className="map-marker-hint__title">
-            <strong>{this.props.marker.get('title')}</strong>
-          </div>
-          <div className="map-marker-hint__address">
-            {this.props.marker.get('address')}
-          </div>
-
-          <div className={cx('map-marker-hint__content', this.props.showBallon ? 'map-marker-hint__content--visible' : '')}>
-            {this.props.marker.get('description')}
-          </div>
-
-          <div>
-            <a className={cx('map-marker-hint__ap-link', this.props.showBallon ? 'map-marker-hint__ap-link--hidden' : '')}>Click to view more info</a>
-          </div>
-
-        </div>
       </div>
     );
   }
